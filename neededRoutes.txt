@@ -1,0 +1,74 @@
+main page
+get /gyms
+return [{
+    gymId: 1,
+    name: xxx,
+    address: 123 123231 343,
+    hours
+},
+{
+    gymId: 2,
+    gymName: xxx,
+    address: 123 123231 343,
+    hours
+}]
+
+gym page:
+get /gyms/:id
+return {
+    gymId: 1,
+    gymName: xxx,
+    address: 123 123231 343,
+    hours
+}
+
+booking page:
+new booking
+post /gyms/:id/
+body {
+    name,
+    email,
+    hour
+}
+return string: bookingId
+
+remove booking
+delete /gyms/:id/
+body {
+    bookingId,
+    email
+}
+return string: success
+
+admin page:
+add booking similar to above post /gyms/:id/
+remove booking similar to above delete /gyms/:id/
+
+modify manually specific hour total and/or currnet
+post /admin/:gymId/:hour
+body {
+    newCurrent,
+    newTotal,
+    username,
+    password
+}
+
+modify manually total for all times of the gym
+post /admin/:gymId/:newTotal
+body {
+    username,
+    password
+}
+
+get all bookings
+post /admin/:gymId
+body {
+    username,
+    password
+}
+return {
+    gymId,
+    name,
+    address,
+    hours
+}
