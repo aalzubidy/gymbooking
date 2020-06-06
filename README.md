@@ -1,2 +1,2 @@
 # gymbooking
-Gym bookings and capacity
+Gym bookings web application
