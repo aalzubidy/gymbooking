@@ -1,0 +1,45 @@
+<div class="container-fluid" ng-controller="jsonPathController">
+    <div class="row my-4 mx-5  justify-content-center">
+        <div class="col">
+            <input type="text" class="form-control" id="jsonP" ng-model="jsonP" placeholder="Enter json path"
+                data-toggle="tooltip" title="Enter json path e.g. $.people[1].name">
+        </div>
+        <div>
+            <button class="btn btn-outline-primary" ng-click="evaluateJSONPath()">Run</button>
+            <button
+                ng-class="{'btn btn-outline-success': autoRunLStatus === 'On', 'btn btn-outline-danger': autoRunLStatus === 'Off'}"
+                ng-click="setAutoRun()">Auto Run: {{autoRunLStatus}}</button>
+        </div>
+    </div>
+
+    <div class="row mx-3">
+        <div class="col">
+            <h6>JSON Input</h6>
+            <div id="editorInputJSONPath">{}</div>
+        </div>
+        <div class="col">
+            <h6>JSON Output</h6>
+            <div id="editorOutputJSONPath">{}</div>
+        </div>
+    </div>
+
+    <div class="row my-3 mx-4 saveUseBtnRow justify-content-end">
+        <button class="btn btn-outline-primary" ng-click="savePath()">Save in Session</button>
+        <button class="btn btn-outline-primary" ng-click="switchOutputInput()">Use output as input</button>
+    </div>
+
+    <div class="row ml-5">
+        <h6>Saved JSON Path In This Session</h6>
+    </div>
+
+    <div class="row savedPathsRow ml-5">
+        <ul>
+            <li ng-repeat="path in savedPaths"">{{path.path}} <button ng-click=" loadSavedPath(path.path, path.input,
+                path.output)" class="btn-small btn-outline-secondary">Load</button> </li>
+        </ul>
+    </div>
+
+    <div class="row siteFooter align-items-end justify-content-center">
+        <p>Website by <a href="http://www.aalzubidy.com" target="_blank">Ahmed Al-Zubidy</a></p>
+    </div>
+</div>

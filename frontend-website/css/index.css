@@ -1,0 +1,60 @@
+#editorInputJSONPath {
+  width: 100%;
+  height: 500px;
+}
+
+#editorOutputJSONPath {
+  width: 100%;
+  height: 500px;
+}
+
+#editorInputJSONObject {
+  width: 100%;
+  height: 500px;
+}
+
+#editorInputJSONSchema {
+  width: 100%;
+  height: 500px;
+}
+
+nav a {
+  color: rgb(53, 53, 53) !important;
+}
+
+.active {
+  background-color: rgb(188, 229, 253);
+  color: black !important;
+  border-radius: 6px;
+}
+
+.saveUseBtnRow button {
+  margin: 0 6px;
+}
+
+.generateValidateRow button {
+  margin: 0 4px;
+}
+
+.savedPathsRow ul li {
+  margin-bottom: 6px;
+}
+
+.schemaResultsValid {
+  background-color: green;
+  color: white;
+}
+
+.schemaResultsInvalid {
+  background-color: red;
+  color: white;
+}
+
+.siteFooter {
+  position: absolute;
+  width: 300px;
+  margin-left: -150px;
+  bottom: 0px;
+  left: 50%;
+  font-size: 0.8em;
+}

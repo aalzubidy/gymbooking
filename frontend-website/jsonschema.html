@@ -1,0 +1,39 @@
+<div class="container-fluid" ng-controller="jsonSchemaController">
+    <div class="row generateValidateRow my-4 mx-5  justify-content-center">
+        <div>
+            <button ng-click="generateSchema()" class="btn btn-outline-primary">Generate Schema from JSON</button>
+            <button ng-click="validateJSON()" class="btn btn-outline-primary">Validate JSON against Schema</button>
+        </div>
+    </div>
+
+    <div class="row mx-3">
+        <div class="col">
+            <h6>JSON Object</h6>
+            <div id="editorInputJSONObject">{}</div>
+        </div>
+        <div class="col">
+            <h6>JSON Schema</h6>
+            <div id="editorInputJSONSchema">{}</div>
+        </div>
+    </div>
+
+    <div class="row my-3 mx-4 justify-content-end">
+        <button class="btn btn-outline-primary" ng-click="downloadSchema()">Download Schema</button>
+    </div>
+
+    <div class="row ml-5 mt-3">
+        <h6>JSON Schema Results: <span
+                ng-class="{'schemaResultsValid': jsonSchemaResults === 'Valid', 'schemaResultsInvalid': jsonSchemaResults === 'Invalid'}">{{jsonSchemaResults}}</span>
+        </h6>
+    </div>
+
+    <div class="row ml-5">
+        <ul>
+            <li ng-repeat="jsonSchemaError in jsonSchemaErrors"">{{jsonSchemaError.dataPath}} - {{jsonSchemaError.schemaPath}} - {{jsonSchemaError.message}}</li>
+        </ul>
+    </div>
+
+    <div class="row siteFooter align-items-end justify-content-center">
+        <p>Website by <a href="http://www.aalzubidy.com" target="_blank">Ahmed Al-Zubidy</a></p>
+    </div>
+</div>
