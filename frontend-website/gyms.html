@@ -1,0 +1,24 @@
+<div ng-controller="gymsController">
+    <h1>Gym Booking</h1>
+    <select ng-model="selectedGym" ng-options="x.name for x in gyms" ng-change="viewGym()">
+        <option value="">--Select a Gym--</option>
+    </select><br>
+
+    {{gymName}}<br>
+    {{gymAddress}}<br>
+    <select ng-model="selectedHourView" ng-options="x for x in hoursView" ng-change="viewHours()">
+        <option value="">--Select a Time--</option>
+    </select><br>
+    Total: {{totalHour}}<br>
+    Booked: {{currentHour}}<br>
+
+    <input type="text" ng-model="bookingName" placeholder="Enter name">
+    <input type="text" ng-model="bookingEmail" placeholder="Enter email">
+    <input type="text" ng-model="bookingPhoneNumber" placeholder="Enter phone number">
+    <button ng-click="bookHour()">Book</button>
+
+    Booking ID: {{bookingId}}<br>
+
+    <a href="#/!">Home</span></a><br>
+    <a href="#!admin">Admin</a><br>
+</div>

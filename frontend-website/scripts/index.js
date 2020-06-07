@@ -3,7 +3,24 @@ var urlPrefix = window.location.protocol + '//' + window.location.hostname + ':'
 var serverUrl = 'http://localhost:3001'
 
 // Start an angularjs app
-var app = angular.module('gymBookingApp', []);
+var app = angular.module('gymBookingApp', ['ngRoute']);
+
+// Set routes
+app.config(function ($routeProvider) {
+  $routeProvider
+    .when("/", {
+      templateUrl: "gyms.html"
+    })
+    .when("/admin", {
+      templateUrl: "admin.html"
+    })
+    .when("/removeBooking", {
+      templateUrl: "removeBooking.html"
+    })
+    .when('/*', {
+      templateUrl: "notFound.html"
+    });
+})
 
 app.controller('gymsController', function ($scope, $http) {
 
@@ -45,137 +62,164 @@ app.controller('gymsController', function ($scope, $http) {
   }
 });
 
+app.controller('adminController', function ($scope, $http) {
+  let gym = null;
+  let username = null;
+  let password = null;
 
-// Controller to run and evaluate json path
-// app.controller("jsonPathController", function ($scope) {
-//   // Option to run the json path automatically as typing
-//   $scope.autoRunLStatus = 'Off';
+  $scope.login = function login() {
+    username = $scope.loginUsername;
+    password = $scope.loginPassword;
 
-//   // List of saved json paths, their input, and their output
-//   $scope.savedPaths = [];
+    //login stuff and get gymId, get full gym details, and get all bookings
+    $scope.gymId = "5edd07bc9432d7ad226b9fdb";
+    $http.get(serverUrl + '/gyms/' + $scope.gymId)
+      .then(function (response) {
+        gym = response.data;
+        $scope.gymName = gym.name;
+        $scope.gymAddress = gym.address;
+        $scope.hoursView = Object.keys(gym.hours);
+      });
 
-//   // Editor settings - Input JSON Object to run json paths
-//   var editorInputJSONPath = ace.edit("editorInputJSONPath");
-//   editorInputJSONPath.setTheme("ace/theme/solarized_light");
-//   editorInputJSONPath.session.setMode("ace/mode/json");
-//   editorInputJSONPath.setFontSize(editorFontSize);
+    $scope.viewHours = function viewHours() {
+      $scope.totalHour = gym.hours[$scope.selectedHourView].total;
+      $scope.currentHour = gym.hours[$scope.selectedHourView].current;
+    }
 
-//   // Editor settings - Output for the results of json path
-//   var editorOutputJSONPath = ace.edit("editorOutputJSONPath");
-//   editorOutputJSONPath.setTheme("ace/theme/solarized_light");
-//   editorOutputJSONPath.session.setMode("ace/mode/json");
-//   editorOutputJSONPath.setFontSize(editorFontSize);
+    $scope.updateCapacity = function updateCapacity() {
+      const postData = {
+        newCapacity: $scope.newCapacity,
+        username,
+        password,
+      }
 
-//   // A listner to display any erros in the input object
-//   editorInputJSONPath.getSession().on('change', function () {
-//     if (editorInputJSONPath.session.$annotations.length > 0) {
-//       editorOutputJSONPath.setValue(JSON.stringify(editorInputJSONPath.session.$annotations));
-//     } else {
-//       editorOutputJSONPath.setValue('{}');
-//     }
-//   });
+      const httpConfig = {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
 
-//   // Function to run the json path against the input json object
-//   $scope.evaluateJSONPath = function evaluateJSONPath() {
-//     if ($scope.jsonP) {
-//       let input = JSON.parse(editorInputJSONPath.session.getValue());
-//       let jsonP = $scope.jsonP;
-//       let result = JSONPath.JSONPath({
-//         path: jsonP,
-//         json: input
-//       });
-//       editorOutputJSONPath.setValue(JSON.stringify(result, null, 1), -1);
-//     }
-//   }
+      $http.post(serverUrl + '/gyms/' + gym._id, postData, httpConfig).then(function (response) {
+        console.log(response.data);
+      });
+    }
 
-//   // Function to save json paths, their input, and their output in the current session
-//   $scope.savePath = function savePath() {
-//     if ($scope.jsonP) {
-//       $scope.savedPaths.push({
-//         path: $scope.jsonP,
-//         input: editorInputJSONPath.session.getValue(),
-//         output: editorOutputJSONPath.session.getValue()
-//       });
-//     }
-//   }
+    $scope.updateTotal = function updateTotal() {
+      const postData = {
+        newCapacity: $scope.newCapacity,
+        username,
+        password,
+      }
 
-//   // Change the auto run option
-//   $scope.setAutoRun = function setAutoRun() {
-//     if ($scope.autoRunLStatus === 'Off') {
-//       $scope.autoRunLStatus = 'On';
-//       $('#jsonP').on('input', () => {
-//         $scope.evaluateJSONPath();
-//       })
-//     } else {
-//       $('#jsonP').off();
-//       $scope.autoRunLStatus = 'Off';
-//     }
-//   }
+      const httpConfig = {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
 
-//   // Load the saved json path from the session along with the orignal input and output
-//   $scope.loadSavedPath = function loadSavedPath(p, i, o) {
-//     $scope.jsonP = p;
-//     editorInputJSONPath.setValue(i, -1);
-//     editorOutputJSONPath.setValue(o, -1);
-//   }
+      $http.post(serverUrl + '/gyms/' + gym._id, postData, httpConfig).then(function (response) {
+        console.log(response.data);
+      });
+    }
 
-//   // Use the output as an input
-//   $scope.switchOutputInput = function switchOutputInput() {
-//     editorInputJSONPath.setValue(editorOutputJSONPath.session.getValue());
-//     editorOutputJSONPath.setValue('{}');
-//   }
-// });
+    $scope.updateCurrent = function updateCurrent() {
+      const postData = {
+        newCurrent: $scope.newCurrent,
+        total: `${gym.hours[$scope.selectedHourView].total}`,
+        hour: $scope.selectedHourView,
+        username,
+        password,
+      }
 
-// A controller to handle generating a json schema and validating an object against schema
-// app.controller("jsonSchemaController", function ($scope) {
-//   // Store schema validation error
-//   $scope.jsonSchemaErrors = [];
+      const httpConfig = {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
 
-//   // Editor settings - Input json object
-//   var editorInputJSONObject = ace.edit("editorInputJSONObject");
-//   editorInputJSONObject.setTheme("ace/theme/solarized_light");
-//   editorInputJSONObject.session.setMode("ace/mode/json");
-//   editorInputJSONObject.setFontSize(editorFontSize);
+      $http.post(serverUrl + '/gyms/' + gym._id, postData, httpConfig).then(function (response) {
+        console.log(response.data);
+      });
+    }
 
-//   // Editor settings - Input or output for json schema
-//   var editorInputJSONSchema = ace.edit("editorInputJSONSchema");
-//   editorInputJSONSchema.setTheme("ace/theme/solarized_light");
-//   editorInputJSONSchema.session.setMode("ace/mode/json");
-//   editorInputJSONSchema.setFontSize(editorFontSize);
+    $scope.updateCurrentPlus = function updateCurrentPlus() {
+      const postData = {
+        current: `${gym.hours[$scope.selectedHourView].current + 1}`,
+        total: `${gym.hours[$scope.selectedHourView].total}`,
+        hour: $scope.selectedHourView,
+        username,
+        password,
+      }
 
-//   // A function to validate a json object against a schema
-//   $scope.validateJSON = function validateJSON() {
-//     $scope.jsonSchemaErrors = [];
-//     let schema = JSON.parse(editorInputJSONSchema.session.getValue());
-//     let obj = JSON.parse(editorInputJSONObject.session.getValue());
+      const httpConfig = {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
 
-//     var ajv = new Ajv();
-//     var validate = ajv.compile(schema);
-//     var valid = validate(obj);
-//     if (!valid) {
-//       $scope.jsonSchemaResults = "Invalid";
-//       $scope.jsonSchemaErrors = validate.errors;
-//     } else {
-//       $scope.jsonSchemaResults = "Valid";
-//     }
-//   }
+      $http.post(serverUrl + '/gyms/' + gym._id, postData, httpConfig).then(function (response) {
+        console.log(response.data);
+      });
+    }
 
-//   // Generate a json schema from a json object
-//   $scope.generateSchema = function generateSchema() {
-//     let obj = JSON.parse(editorInputJSONObject.session.getValue());
-//     editorInputJSONSchema.setValue(JSON.stringify(j2s(obj), null, 1), -1);
-//   }
+    $scope.updateCurrentMinus = function updateCurrentMinus() {
+      const postData = {
+        current: `${gym.hours[$scope.selectedHourView].current - 1}`,
+        total: `${gym.hours[$scope.selectedHourView].total}`,
+        hour: $scope.selectedHourView,
+        username,
+        password,
+      }
 
-//   // Download generated schema as a json file
-//   $scope.downloadSchema = function downloadSchema() {
-//     try {
-//       let schemaOutput = JSON.parse(editorInputJSONSchema.session.getValue());
-//       if (Object.keys(schemaOutput).length >= 1) {
-//         downloadFile(schemaOutput, 'jsonSchema');
-//       }
-//     } catch (error) {
-//       console.log('Schema is empty or not json format');
-//     }
-//   }
+      const httpConfig = {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
 
-// });
+      $http.post(serverUrl + '/gyms/' + gym._id, postData, httpConfig).then(function (response) {
+        console.log(response.data);
+      });
+    }
+
+    $scope.getBookings = function getBookings() {
+      console.log('hi');
+      $scope.bookings = [{
+          "gymId": "5edd07bc9432d7ad226b9fdb",
+          "name": "a",
+          "email": "a",
+          "phoneNumber": "a",
+          "hour": "11",
+          "currentTime": 1591551506486.0
+        },
+        {
+          "gymId": "5edd07bc9432d7ad226b9fdb",
+          "name": "a",
+          "email": "a",
+          "phoneNumber": "a",
+          "hour": "11",
+          "currentTime": 1591551506486.0
+        }
+      ]
+      console.log($scope.bookings);
+
+      dataSet1 = $scope.bookings;
+
+      $('#example').DataTable({
+        data: dataSet1,
+        columns: [
+          { data: "name" },
+          { data: "email" },
+          { data: "phoneNumber" },
+          { data: "hour" }
+        ]
+      });
+
+      // $http.get(serverUrl + '/bookings/' + gym.id)
+      //   .then(function (response) {
+      //     $scope.bookings = response.data;
+      //   });
+    }
+
+  }
+});

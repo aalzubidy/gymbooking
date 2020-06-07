@@ -41,6 +41,10 @@
     <!-- Loadash -->
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
 
+    <!-- Data Tables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,700" rel="stylesheet">
 
@@ -60,27 +64,7 @@
 
 <body ng-app="gymBookingApp">
     <section>
-        <div ng-controller="gymsController">
-            <h1>Gym Booking</h1>
-            <select ng-model="selectedGym" ng-options="x.name for x in gyms" ng-change="viewGym()">
-                <option value="">--Select a Gym--</option>
-            </select><br>
-
-            {{gymName}}<br>
-            {{gymAddress}}<br>
-            <select ng-model="selectedHourView" ng-options="x for x in hoursView" ng-change="viewHours()">
-                <option value="">--Select a Time--</option>
-            </select><br>
-            Total: {{totalHour}}<br>
-            Booked: {{currentHour}}<br>
-
-            <input type="text" ng-model="bookingName" placeholder="Enter name">
-            <input type="text" ng-model="bookingEmail" placeholder="Enter email">
-            <input type="text" ng-model="bookingPhoneNumber" placeholder="Enter phone number">
-            <button ng-click="bookHour()">Book</button>
-
-            Booking ID: {{bookingId}}
-        </div>
+        <div ng-view></div>
     </section>
 </body>
 

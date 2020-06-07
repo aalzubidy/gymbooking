@@ -1,0 +1,39 @@
+<div ng-controller="adminController">
+    <input type="text" ng-model="loginUsername" placeholder="Enter username">
+    <input type="text" ng-model="loginPassword" placeholder="Enter password">
+    <button ng-click="login()">Login</button><br>
+
+    {{gymName}}<br>
+    {{gymAddress}}<br>
+
+    <input type="text" ng-model="newCapacity" placeholder="Set new capacity for all hours">
+    <button ng-click="updateTotal()">Update Capacity</button><br><br>
+
+    <select ng-model="selectedHourView" ng-options="x for x in hoursView" ng-change="viewHours()">
+        <option value="">--Select a Time--</option>
+    </select>
+    Total: {{totalHour}}
+    Booked: {{currentHour}}
+    <button ng-click="updateCurrentPlus()">+</button>
+    <button ng-click="updateCurrentMinus()">-</button>
+    <input type="text" ng-model="newCurrent" placeholder="Set specific current for hour">
+    <button ng-click="updateCurrent()">Update Current</button><br><br>
+
+    <button ng-click="getBookings()">View All Bookings</button><br>
+
+    <table id="example" class="display nowrap" width="100%">
+        <thead>
+          <tr>
+            <th>gymId</th>
+            <th>name</th>
+            <th>email</th>
+            <th>phoneNumber</th>
+            <th>hour</th>
+            <th>currentTime</th>
+          </tr>
+        </thead>
+      </table>
+
+    <a href="#/!">Home</span></a><br>
+    <a href="#!admin">Admin</a><br>
+</div>
