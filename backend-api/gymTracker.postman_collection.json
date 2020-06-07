@@ -1,0 +1,220 @@
+{
+	"info": {
+		"_postman_id": "48cc96e7-9a65-4b7c-89e0-4a2e45b5e95c",
+		"name": "gymTracker",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GYMS",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"user\",\n\t\"password\": \"pass\",\n\t\"roles\":\"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/users/",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GYMS/ createGym",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\" : \"GYM123\",\n    \"email\": \"evzonas@evzonas.net\",\n    \"address\" : \"ADDRESS123\",\n    \"sqft\" : 150,\n    \"totalCapacity\" : 250,\n    \"hours\" : {\n    \t\"00\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"01\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"02\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"03\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"04\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"05\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"06\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"07\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"08\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"09\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"10\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"11\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"12\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"13\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"14\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"15\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"16\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"17\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"18\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"19\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"20\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"21\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"22\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"23\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"24\": {\"current\" : 10 , \"total\" : \"50\" }\n    },\n    \"credentials\" : {\"user\":\"user\",\"password\":\"pass\"}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/gyms/",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"gyms",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GYMS/id",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\" : \"GYM123\",\n    \"email\": \"evzonas@evzonas.net\",\n    \"address\" : \"ADDRESS123\",\n    \"sqft\" : 150,\n    \"totalCapacity\" : 250,\n    \"hours\" : {\n    \t\"00\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"01\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"02\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"03\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"04\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"05\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"06\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"07\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"08\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"09\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"10\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"11\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"12\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"13\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"14\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"15\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"16\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"17\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"18\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"19\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"20\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"21\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"22\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"23\": {\"current\" : 10 , \"total\" : \"50\" },\n    \t\"24\": {\"current\" : 10 , \"total\" : \"50\" }\n    },\n    \"credentials\" : {\"user\":\"user\",\"password\":\"pass\"}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/gyms/",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"gyms",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GYMS/id createBooking",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"Michael Evzonas\",\n\t\"email\" : \"evzonas@evzonas.net\",\n\t\"hour\" : \"Test123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/gyms/5edc35e9c13fb471ac106930",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"gyms",
+						"5edc35e9c13fb471ac106930"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GYMS/id deleteBooking",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"bookingId\" : \"5edce53c82e2d339da080840\",\n\t\"email\" : \"evzonas@evzonas.net\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/gyms/5edc35e9c13fb471ac106930",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"gyms",
+						"5edc35e9c13fb471ac106930"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users createUser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"user\",\n\t\"password\": \"pass\",\n\t\"roles\":\"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/users/",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

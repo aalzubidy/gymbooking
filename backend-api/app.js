@@ -43,9 +43,84 @@ app.get("/gyms", (req, res) => {
         const msg = `Could not find gyms ${err}`;
         console.log(msg);
         res.status(400).send(msg);
+      } else {
+        res.send(gyms);
       }
-      res.send(gyms);
     });
+});
+app.post("/gyms/", (req, res) => {
+  if (
+    req.body.name == null ||
+    req.body.email == null ||
+    req.body.hours == null ||
+    req.body.address == null ||
+    req.body.sqft == null ||
+    req.body.totalCapacity == null ||
+    req.body.credentials == null
+  ) {
+    const msg = `Could not insert booking: At least one of the required fields is null.REQ_FIELDS[name,email,hours,address,sqft]`;
+    console.log(msg);
+    res.status(400).send(msg);
+  } else {
+    const now = Date.now();
+    mongo
+      .db("gymtracker")
+      .collection("gyms")
+      .insertOne(
+        {
+          name: req.body.name,
+          email: req.body.email,
+          address: req.body.address,
+          currentTime: now,
+          sqft: req.body.sqft,
+          totalCapacity: req.body.totalCapacity,
+          hours: req.body.hours,
+          credentials: req.body.credentials,
+        },
+        function (err, gym) {
+          if (err) {
+            const msg = `Could not insert gym ${err}`;
+            console.log(msg);
+            res.status(400).send(msg);
+          } else {
+            res.send(gym.ops[0]);
+          }
+        }
+      );
+  }
+});
+
+app.post("/users/", (req, res) => {
+  if (
+    req.body.username == null ||
+    req.body.password == null ||
+    req.body.roles == null
+  ) {
+    const msg = `Could not insert booking: At least one of the required fields is null.REQ_FIELDS[username,password]`;
+    console.log(msg);
+    res.status(400).send(msg);
+  } else {
+    const now = Date.now();
+    mongo
+      .db("gymtracker")
+      .collection("users")
+      .insertOne(
+        {
+          username: req.body.username,
+          password: req.body.password,
+          roles: req.body.roles,
+        },
+        function (err, user) {
+          if (err) {
+            const msg = `Could not insert gym ${err}`;
+            console.log(msg);
+            res.status(400).send(msg);
+          } else {
+            res.send(user.ops[0]["_id"]);
+          }
+        }
+      );
+  }
 });
 
 app.get("/gyms/:id", (req, res) => {
@@ -82,6 +157,7 @@ app.post("/gyms/:id", (req, res) => {
       .collection("bookings")
       .insertOne(
         {
+          gymId: req.params.id,
           name: req.body.name,
           email: req.body.email,
           hour: req.body.hour,
@@ -101,29 +177,32 @@ app.post("/gyms/:id", (req, res) => {
 });
 
 app.delete("/gyms/:id", (req, res) => {
-  if (req.body.bookingId == null || req.body.email == null) {
-    const msg = `Could not delete booking: At least one of the required fields is null.REQ_FIELDS[bookingId,email]`;
+  if (req.body.bookingId == null) {
+    const msg = `Could not delete booking: REQ_FIELDS[bookingId]`;
     console.log(msg);
     res.status(400).send(msg);
   } else {
+    console.log("gymID: " + req.params.id);
+    console.log("bookingID: " + req.body.bookingId);
     mongo
       .db("gymtracker")
       .collection("bookings")
-      .insertOne(
-        {
-          name: req.body.name,
-          email: req.body.email,
-          hour: req.body.hour,
-          currentTime: now,
-        },
+      .remove(
+        { gymId: req.params.id, _id: ObjectId(req.body.bookingId) },
         function (err, booking) {
           if (err) {
-            const msg = `Could not insert booking ${err}`;
+            const msg = `Could not find booking ${err}`;
             console.log(msg);
             res.status(400).send(msg);
+          } else {
+            // console.log(booking);
+            // console.log(booking.n);
+            if (booking.result.n) {
+              res.send("success");
+            } else {
+              res.send(booking);
+            }
           }
-          console.log(booking);
-          res.send(booking.ops[0]._id);
         }
       );
   }

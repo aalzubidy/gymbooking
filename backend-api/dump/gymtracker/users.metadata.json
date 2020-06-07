@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"gymtracker.users"}],"uuid":"b49ad6458ee645cbb4c800912babeb1f"}
