@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"admin.pronghorn"}],"uuid":"5b036b569baf401aba0cf73a878bdac1"}
