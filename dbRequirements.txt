@@ -7,9 +7,9 @@ gyms collection
     password,
     createdDate
     hours {
-        {hour: 7, total: 10, current: 5}
-        {hour: 8, total: 10, current: 3}
-        {hour: 9, total: 8, current: 0}
+        "7": {total: 10, current: 5}
+        "8": total: 10, current: 3}
+        "9": total: 8, current: 0}
     }
 }
 
