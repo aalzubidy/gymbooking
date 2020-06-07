@@ -4,19 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="JSON, json, JSON Path, JSON Schema, JSON Validator, Schema, Schema Validator, JSON Path Finder, JSON Path Evaluator, JSON Schema Generator, Developer, Javascript, Developer Tools">
-    <meta name="author" content="Ahmed Al-Zubidy">
-    <meta name="subject" content="JSON Tools">
-    <meta name="abstract" content="JSON Developer Tools includes json path finder and evaluator, json validator, json schema generator, and json schema validator">
-    <meta name="topic" content="JSON Developer Tools includes json path finder and evaluator, json validator, json schema generator, and json schema validator">
-    <meta name="summary" content="JSON Developer Tools includes json path finder and evaluator, json validator, json schema generator, and json schema validator">
+    <meta name="keywords" content="Gym Booking, Gym, Booking">
+    <meta name="author" content="">
+    <meta name="subject" content="Gym Booking">
+    <meta name="abstract" content="Gym booking website">
+    <meta name="topic" content="Gym booking website">
+    <meta name="summary" content="Gym booking website">
     <meta name="designer" content="Ahmed Al-Zubidy">
     <meta name="owner" content="Ahmed Al-Zubidy">
-    <meta name="url" content="http://www.jsontoolsplus.com">
-    <meta name="identifier-URL" content="http://www.jsontoolsplus.com">
-    <meta name="pagename" content="JSON Tools Plus">
+    <meta name="url" content="http://www.xxxx.com">
+    <meta name="identifier-URL" content="http://www.xxxx.com">
+    <meta name="pagename" content="Gym Booking">
     <meta name="target" content="all">
-    <link rel="bookmark" title="JSON Tools Plus" href="http://www.jsontoolsplus.com">
+    <link rel="bookmark" title="Gym Booking" href="http://www.xxxx.com">
 
     <!-- Icon -->
     <link rel="icon" href="img/websiteIcon.png">
@@ -38,20 +38,8 @@
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
 
-    <!-- ACE -->
-    <script src="scripts/src-min/ace.js" type="text/javascript" charset="utf-8"></script>
-    <script src="scripts/src-min/theme-solarized_light.js" type="text/javascript" charset="utf-8"></script>
-    <script src="scripts/src-min/mode-json.js" type="text/javascript" charset="utf-8"></script>
-
     <!-- Loadash -->
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
-
-    <!-- AJV -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ajv/6.12.2/ajv.min.js"
-        integrity="sha256-ZVmP98znALIm9fVvLIXTKpm7rfAhP85+Rp3r4DtkfYY=" crossorigin="anonymous"></script>
-
-    <!-- ToJSONSchema -->
-    <script src="scripts/J2S.js"></script>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,700" rel="stylesheet">
@@ -64,27 +52,35 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
-    <!-- JSONPathPlus -->
-    <!-- <script src="scripts/jsonPathPlus/core-js-bundle/minified.js"></script> -->
-    <script src="scripts/jsonPathPlus/dist/index-umd.js"></script>
-
     <!-- Custom Imports -->
     <link rel="stylesheet" href="css/index.css">
     <script src="scripts/index.js"></script>
 
 </head>
 
-<body ng-app="jsonToolkitApp">
+<body ng-app="gymBookingApp">
     <section>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#/!">JSON Path Evaluator <span
-                        class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="#!jsonschema">JSON Schema Generator & Validator</a>
-                <a class="nav-item nav-link" href="#!api">APIs</a>
-            </div>
-        </nav>
-        <div ng-view></div>
+        <div ng-controller="gymsController">
+            <h1>Gym Booking</h1>
+            <select ng-model="selectedGym" ng-options="x.name for x in gyms" ng-change="viewGym()">
+                <option value="">--Select a Gym--</option>
+            </select><br>
+
+            {{gymName}}<br>
+            {{gymAddress}}<br>
+            <select ng-model="selectedHourView" ng-options="x for x in hoursView" ng-change="viewHours()">
+                <option value="">--Select a Time--</option>
+            </select><br>
+            Total: {{totalHour}}<br>
+            Booked: {{currentHour}}<br>
+
+            <input type="text" ng-model="bookingName" placeholder="Enter name">
+            <input type="text" ng-model="bookingEmail" placeholder="Enter email">
+            <input type="text" ng-model="bookingPhoneNumber" placeholder="Enter phone number">
+            <button ng-click="bookHour()">Book</button>
+
+            Booking ID: {{bookingId}}
+        </div>
     </section>
 </body>
 

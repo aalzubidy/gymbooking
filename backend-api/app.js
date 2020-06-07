@@ -31,6 +31,7 @@ async function mongoConnect() {
 }
 mongoConnect();
 
+// Get a list of all gyms
 app.get("/gyms", (req, res) => {
   const now = Date.now();
   console.log(now);
@@ -48,6 +49,7 @@ app.get("/gyms", (req, res) => {
       }
     });
 });
+
 app.post("/gyms/", (req, res) => {
   if (
     req.body.name == null ||
@@ -140,13 +142,15 @@ app.get("/gyms/:id", (req, res) => {
     });
 });
 
+// Book an hour at a gym
 app.post("/gyms/:id", (req, res) => {
   if (
     req.body.name == null ||
     req.body.email == null ||
+    req.body.phoneNumber == null ||
     req.body.hour == null
   ) {
-    const msg = `Could not insert booking: At least one of the required fields is null.REQ_FIELDS[name,email,hour]`;
+    const msg = `Could not insert booking: At least one of the required fields is null.REQ_FIELDS[name,email,phoneNumber,hour]`;
     console.log(msg);
     res.status(400).send(msg);
   } else {
@@ -160,6 +164,7 @@ app.post("/gyms/:id", (req, res) => {
           gymId: req.params.id,
           name: req.body.name,
           email: req.body.email,
+          phoneNumber: req.body.phoneNumber,
           hour: req.body.hour,
           currentTime: now,
         },
