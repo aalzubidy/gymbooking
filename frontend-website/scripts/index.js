@@ -17,6 +17,9 @@ app.config(function ($routeProvider) {
     .when("/removeBooking", {
       templateUrl: "removeBooking.html"
     })
+    .when("/gym/:gymId", {
+      templateUrl: "gym.html"
+    })
     .when('/*', {
       templateUrl: "notFound.html"
     });
@@ -34,6 +37,7 @@ app.controller('gymsController', function ($scope, $http) {
     $scope.gymName = $scope.selectedGym.name;
     $scope.gymAddress = $scope.selectedGym.address;
     $scope.hoursView = Object.keys($scope.selectedGym.hours);
+    $scope.gymId = $scope.selectedGym._id;
   }
 
   $scope.viewHours = function viewHours() {
@@ -207,11 +211,18 @@ app.controller('adminController', function ($scope, $http) {
 
       $('#example').DataTable({
         data: dataSet1,
-        columns: [
-          { data: "name" },
-          { data: "email" },
-          { data: "phoneNumber" },
-          { data: "hour" }
+        columns: [{
+            data: "name"
+          },
+          {
+            data: "email"
+          },
+          {
+            data: "phoneNumber"
+          },
+          {
+            data: "hour"
+          }
         ]
       });
 
@@ -222,4 +233,31 @@ app.controller('adminController', function ($scope, $http) {
     }
 
   }
+});
+
+app.controller('gymController', function ($scope, $http) {
+  let gymId = window.location.href;
+  gymId = gymId.substring(gymId.indexOf('gym/') + 4);
+
+  let selectedGym = null;
+
+  var dt = new Date();
+  let currentHour = dt.getHours();
+
+  $scope.viewHours = function viewHours() {
+    $scope.totalHour = selectedGym.hours[$scope.selectedHourView].total;
+    $scope.currentHour = selectedGym.hours[$scope.selectedHourView].current;
+  }
+
+  $http.get(serverUrl + '/gyms/' + gymId)
+    .then(function (response) {
+      selectedGym = response.data;
+      $scope.gymName = selectedGym.name;
+      $scope.gymAddress = selectedGym.address;
+      $scope.hoursView = Object.keys(selectedGym.hours);
+      $scope.selectedHourView = currentHour;
+      $scope.currentHour = currentHour;
+      $scope.viewHours();
+    });
+
 });

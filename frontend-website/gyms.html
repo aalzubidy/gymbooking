@@ -6,9 +6,10 @@
 
     {{gymName}}<br>
     {{gymAddress}}<br>
+    <a href="#!gym/{{gymId}}">View Gym Page</a><br>
     <select ng-model="selectedHourView" ng-options="x for x in hoursView" ng-change="viewHours()">
         <option value="">--Select a Time--</option>
-    </select><br>
+    </select><br>gymId
     Total: {{totalHour}}<br>
     Booked: {{currentHour}}<br>
 
