@@ -1,0 +1,85 @@
+{
+  "name": "gymbooking",
+  "version": "1.0.0",
+  "description": "Gym Booking",
+  "main": "app.js",
+  "scripts": {
+    "test": "nyc --recursive --reporter=html --reporter=text --report-dir=coverage/unit mocha test/unit/**",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aalzubidy/gymbooking.git"
+  },
+  "keywords": [
+    "gym",
+    "booking",
+    "capacity manager"
+  ],
+  "author": "Ahmed Al-Zubidy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aalzubidy/gymbooking/issues"
+  },
+  "homepage": "https://github.com/aalzubidy/gymbooking#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "bcrypt": "^5.0.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "consolidate": "^0.15.1",
+    "dotenv": "^8.2.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "express-flash": "0.0.2",
+    "express-sanitizer": "^1.0.4",
+    "express-session": "^1.17.1",
+    "fs-extra": "^7.0.1",
+    "jsonpath-plus": "^4.0.0",
+    "mongodb": "^3.1.10",
+    "mustache": "^3.0.1",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "to-json-schema": "^0.2.5"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^5.12.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "js-yaml": "^3.12.1",
+    "mocha": "^5.2.0",
+    "nyc": "^13.3.0",
+    "sinon": "^7.2.2"
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es6": true,
+      "node": true
+    },
+    "extends": "airbnb-base",
+    "rules": {
+      "no-underscore-dangle": [
+        "error",
+        {
+          "allow": [
+            "_id"
+          ]
+        }
+      ],
+      "import/newline-after-import": 0,
+      "prefer-arrow-callback": 0,
+      "quote-props": 0,
+      "prefer-destructuring": 0,
+      "max-len": 0
+    }
+  },
+  "eslintIgnore": [
+    "node_modules/**",
+    "coverage/**",
+    "public/*",
+    "public/**"
+  ]
+}
