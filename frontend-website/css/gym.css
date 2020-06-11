@@ -16,38 +16,41 @@ body {
   width: 100%;
   box-shadow: 0px 2px 20px black;
   color: white;
-  height: 65vh;
+  height: 60vh;
 }
 
 #countDiv h1 {
   margin-top: 2%;
+}
+
+#gymName {
   font-size: 3em;
 }
 
-#countDiv h4 {
-    margin-bottom: 6%;
+#gymAddress {
+  font-size: 1.4em;
 }
 
-#capacity div{
-    margin: 2%;
-    height: 4%;
-    width: 14%;
-    text-align: center;
-    text-align: center;
-    padding: 3%;
-    color: black;
-    border-radius: 10px;
-    box-shadow: 0px 1px 10px grey;
+#capacity div {
+  margin: 2%;
+  height: 4%;
+  width: 14%;
+  text-align: center;
+  padding: 3%;
+  color: black;
+  border-radius: 10px;
+  box-shadow: 0px 1px 10px grey;
 }
 
-#current{
-    background-color: #FFBB54;
-    display: inline-block;
+#current {
+  background-color: #FFBB54;
+  display: inline-block;
+  text-align: center;
 }
 
-#total{
-    background-color: #FFBB54;
-    display: inline-block;
+#total {
+  background-color: #FFBB54;
+  display: inline-block;
 }
 
 #timeDropDownDiv {
@@ -57,11 +60,11 @@ body {
   width: 300px;
 }
 
-#extraBtn{
+#extraBtn {
   color: black;
 }
 
-#extraBtn img{
+#extraBtn img {
   height: 80px;
   width: 80px;
 }
@@ -74,6 +77,34 @@ figure {
 figcaption {
   color: black;
   text-decoration: none !important;
+}
+
+@media only screen and (max-width: 1250px) {
+  #current h1,
+  #total h1 {
+    font-size: 1.6em !important;
+  }
+
+  #countRow {
+    height: 55vh;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  #current h1,
+  #total h1 {
+    font-size: 1em !important;
+  }
+
+  #capacity div {
+    margin: 2%;
+    height: 4%;
+    width: 18%;
+  }
+
+  #countRow {
+    height: 55vh;
+  }
 }
 
 /* Clock CSS */
@@ -251,7 +282,7 @@ figcaption {
   }
 }
 
-.clock { 
+.clock {
   position: absolute;
   left: 38vw;
   -webkit-transform: translateY(-50%);
