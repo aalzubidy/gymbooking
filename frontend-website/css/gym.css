@@ -1,3 +1,275 @@
 body {
-    background-color: #F5B970;
+  background-color: white;
+}
+
+.container {
+  height: 100vh;
+}
+
+#countDiv {
+  text-align: center;
+}
+
+#countRow {
+  margin: 0 auto;
+  background-color: #0E97FF;
+  width: 100%;
+  box-shadow: 0px 2px 20px black;
+  color: white;
+  height: 65vh;
+}
+
+#countDiv h1 {
+  margin-top: 2%;
+  font-size: 3em;
+}
+
+#countDiv h4 {
+    margin-bottom: 6%;
+}
+
+#capacity div{
+    margin: 2%;
+    height: 4%;
+    width: 14%;
+    text-align: center;
+    text-align: center;
+    padding: 3%;
+    color: black;
+    border-radius: 10px;
+    box-shadow: 0px 1px 10px grey;
+}
+
+#current{
+    background-color: #FFBB54;
+    display: inline-block;
+}
+
+#total{
+    background-color: #FFBB54;
+    display: inline-block;
+}
+
+#timeDropDownDiv {
+  margin: 0 auto;
+  align-content: center;
+  text-align: center;
+  width: 300px;
+}
+
+#extraBtn{
+  color: black;
+}
+
+#extraBtn img{
+  height: 80px;
+  width: 80px;
+}
+
+figure {
+  display: inline-block;
+  margin: 2% 10%;
+}
+
+figcaption {
+  color: black;
+  text-decoration: none !important;
+}
+
+/* Clock CSS */
+
+.digit {
+  position: relative;
+  float: left;
+  width: 3vw;
+  height: 4vw;
+  background-color: #fff;
+  border-radius: 1vw;
+  text-align: center;
+  font-family: Oswald, sans-serif;
+  font-size: 2vw;
+}
+
+.base {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  color: #333;
+}
+
+.flap {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  background-color: #fff;
+  left: 0;
+  top: 0;
+  border-radius: 1vw 1vw 0 0;
+  -webkit-transform-origin: 50% 100%;
+  transform-origin: 50% 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  overflow: hidden;
+}
+
+.flap::before {
+  content: attr(data-content);
+  position: absolute;
+  left: 50%;
+}
+
+.flap.front::before,
+.flap.under::before {
+  top: 100%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.flap.back {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+.flap.back::before {
+  top: 100%;
+  -webkit-transform: translate(-50%, -50%) rotateZ(180deg);
+  transform: translate(-50%, -50%) rotateZ(180deg);
+}
+
+.flap.over {
+  z-index: 2;
+}
+
+.flap.under {
+  z-index: 1;
+}
+
+.flap.front {
+  -webkit-animation: flip-down-front 300ms ease-in both;
+  animation: flip-down-front 300ms ease-in both;
+}
+
+.flap.back {
+  -webkit-animation: flip-down-back 300ms ease-in both;
+  animation: flip-down-back 300ms ease-in both;
+}
+
+.flap.under {
+  -webkit-animation: fade-under 300ms ease-in both;
+  animation: fade-under 300ms ease-in both;
+}
+
+@-webkit-keyframes flip-down-front {
+  0% {
+    -webkit-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+    background-color: #fff;
+    color: #333;
+  }
+
+  100% {
+    -webkit-transform: rotateX(-180deg);
+    transform: rotateX(-180deg);
+    background-color: #a6a6a6;
+    color: black;
+  }
+}
+
+@keyframes flip-down-front {
+  0% {
+    -webkit-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+    background-color: #fff;
+    color: #333;
+  }
+
+  100% {
+    -webkit-transform: rotateX(-180deg);
+    transform: rotateX(-180deg);
+    background-color: #a6a6a6;
+    color: black;
+  }
+}
+
+@-webkit-keyframes flip-down-back {
+  0% {
+    -webkit-transform: rotateY(180deg) rotateX(0deg);
+    transform: rotateY(180deg) rotateX(0deg);
+    background-color: #a6a6a6;
+    color: black;
+  }
+
+  100% {
+    -webkit-transform: rotateY(180deg) rotateX(180deg);
+    transform: rotateY(180deg) rotateX(180deg);
+    background-color: #fff;
+    color: #333;
+  }
+}
+
+@keyframes flip-down-back {
+  0% {
+    -webkit-transform: rotateY(180deg) rotateX(0deg);
+    transform: rotateY(180deg) rotateX(0deg);
+    background-color: #a6a6a6;
+    color: black;
+  }
+
+  100% {
+    -webkit-transform: rotateY(180deg) rotateX(180deg);
+    transform: rotateY(180deg) rotateX(180deg);
+    background-color: #fff;
+    color: #333;
+  }
+}
+
+@-webkit-keyframes fade-under {
+  0% {
+    background-color: #a6a6a6;
+    color: black;
+  }
+
+  100% {
+    background-color: #fff;
+    color: #333;
+  }
+}
+
+@keyframes fade-under {
+  0% {
+    background-color: #a6a6a6;
+    color: black;
+  }
+
+  100% {
+    background-color: #fff;
+    color: #333;
+  }
+}
+
+.clock { 
+  position: absolute;
+  left: 38vw;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-perspective: 100vw;
+  perspective: 100vw;
+  -webkit-perspective-origin: 50% 50%;
+  perspective-origin: 50% 50%;
+}
+
+.clock .digit {
+  margin-right: 0.5vw;
+}
+
+.clock .digit:nth-child(2n+2) {
+  margin-right: 2vw;
+}
+
+.clock .digit:last-child {
+  margin-right: 0;
 }

@@ -63,38 +63,110 @@
 </head>
 
 <body>
-    <section class="container h-100" ng-controller="gymController">
-        <div>
-            <div class="row justify-content-center">
-                <h1>{{gymName}}</h1>
+    <section class="container-fluid" ng-controller="gymController">
+        <div class="row">
+            <!-- <div class="col d-flex flex-column justify-content-between" id="mainCol">
+                <div class="row justify-content-center" id="homeRow">
+                    <a href="#/!">Home</span></a><br>
+                    <a href="#!admin">Admin</a><br>
+                </div> -->
+
+            <div id="countRow">
+                <div id="countDiv">
+                    <h1>{{gymName}}</h1> <br>
+                    <h5>{{gymAddress}}</h5><br><br>
+
+                    <h2>Current Time</h2><br><br>
+                    <div class="clock">
+                        <div class="digit tenhour">
+                            <span class="base"></span>
+                            <div class="flap over front"></div>
+                            <div class="flap over back"></div>
+                            <div class="flap under"></div>
+                        </div>
+
+                        <div class="digit hour">
+                            <span class="base"></span>
+                            <div class="flap over front"></div>
+                            <div class="flap over back"></div>
+                            <div class="flap under"></div>
+                        </div>
+
+                        <div class="digit tenmin">
+                            <span class="base"></span>
+                            <div class="flap over front"></div>
+                            <div class="flap over back"></div>
+                            <div class="flap under"></div>
+                        </div>
+
+                        <div class="digit min">
+                            <span class="base"></span>
+                            <div class="flap over front"></div>
+                            <div class="flap over back"></div>
+                            <div class="flap under"></div>
+                        </div>
+
+                        <div class="digit tensec">
+                            <span class="base"></span>
+                            <div class="flap over front"></div>
+                            <div class="flap over back"></div>
+                            <div class="flap under"></div>
+                        </div>
+
+                        <div class="digit sec">
+                            <span class="base"></span>
+                            <div class="flap over front"></div>
+                            <div class="flap over back"></div>
+                            <div class="flap under"></div>
+                        </div>
+
+                    </div><br><br>
+
+                    <div id="capacity">
+                        <div id="current">
+                            <h2>Booked</h2>
+                            <h1>{{currentHour}}</h1>
+                        </div>
+                        <div id="total">
+                            <h2>Total</h2>
+                            <h1>{{totalHour}}</h1>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="timeDropDownDiv">
+                        <select class="form-control" ng-model="selectedHourView" ng-options="x for x in hoursView"
+                            ng-change="viewHours()">
+                            <option value="">Check Different Time</option>
+                        </select>
+                    </div>
+
+                    <div id="extraBtn">
+                        <figure>
+                            <a href="#/!">
+                                <img src="img/booking.png" alt="Book now!">
+                                <figcaption>Book Now!</figcaption>
+                            </a>
+                        </figure>
+                        
+                        <figure>
+                            <a href="#!admin">
+                                <img src="img/admin.png" alt="Manage Gym">
+                                <figcaption>Manage Gym</figcaption>
+                            </a>
+                        </figure>
+                    </div>
+                </div>
             </div>
-            <div class="row justify-content-center">
-                <h3>{{gymAddress}}</h3>
-            </div>
-            <div class="row justify-content-center">
-                Current Time: <select ng-model="selectedHourView" ng-options="x for x in hoursView" ng-change="viewHours()">
-                    <option value="">{{currentHour}}</option>
-                </select><br>
-            </div>
-            
-            <div class="row justify-content-center">
-                    Currenty Booked:  {{currentHour}}
-                    Total Allowed at this Hour: {{totalHour}}
-            </div>
-            
-            <div class="row">
-                <input type="text" ng-model="bookingName" placeholder="Enter name">
-                <input type="text" ng-model="bookingEmail" placeholder="Enter email">
-                <input type="text" ng-model="bookingPhoneNumber" placeholder="Enter phone number">
-                <button ng-click="bookHour()">Book</button>
-            
-                Booking ID: {{bookingId}}<br>
-            </div>
-        
-            <div class="row">
-                <a href="#/!">Home</span></a><br>
-                <a href="#!admin">Admin</a><br>
-            </div>       
+            <!-- 
+                <div class="row justify-content-center" id="bookingRow">
+                    <input type="text" ng-model="bookingName" placeholder="Enter name">
+                    <input type="text" ng-model="bookingEmail" placeholder="Enter email">
+                    <input type="text" ng-model="bookingPhoneNumber" placeholder="Enter phone number">
+                    <button ng-click="bookHour()">Book</button>
+
+                    Booking ID: {{bookingId}}<br>
+                </div>
+            </div> -->
         </div>
     </section>
 </body>
