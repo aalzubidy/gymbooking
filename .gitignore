@@ -1,21 +1,21 @@
-backend-app_old/.nyc_output
-backend-app_old/coverage
-backend-app_old/node_modules
-backend-app_old/npm-debug.log
-backend-app_old/test/**/*_Results.txt
-backend-app_old/.DS_Store
-backend-api/.nyc_output
-backend-api/coverage
-backend-api/node_modules
-backend-api/npm-debug.log
-backend-api/test/**/*_Results.txt
-backend-api/.DS_Store
-backend-app/.nyc_output
-backend-app/coverage
-backend-app/node_modules
-backend-app/npm-debug.log
-backend-app/test/**/*_Results.txt
-backend-app/.DS_Store
+# backend-app_old/.nyc_output
+# backend-app_old/coverage
+# backend-app_old/node_modules
+# backend-app_old/npm-debug.log
+# backend-app_old/test/**/*_Results.txt
+# backend-app_old/.DS_Store
+# backend-api/.nyc_output
+# backend-api/coverage
+# backend-api/node_modules
+# backend-api/npm-debug.log
+# backend-api/test/**/*_Results.txt
+# backend-api/.DS_Store
+# backend-app/.nyc_output
+# backend-app/coverage
+# backend-app/node_modules
+# backend-app/npm-debug.log
+# backend-app/test/**/*_Results.txt
+# backend-app/.DS_Store
 .vscode/*
 backend-api/.vscode/*
 frontend-website/.vscode/*
