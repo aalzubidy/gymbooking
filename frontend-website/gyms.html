@@ -1,25 +1,62 @@
-<div ng-controller="gymsController">
-    <h1>Gym Booking</h1>
-    <select ng-model="selectedGym" ng-options="x.name for x in gyms" ng-change="viewGym()">
-        <option value="">--Select a Gym--</option>
-    </select><br>
+<div class="container-fluid" ng-controller="gymsController">
+    <div class="row justify-content-center">
+        <div class="form-group" id="selectGymDiv">
+            <h1>Hey! Select a gym to view: </h1>
+            <select class="form-control" ng-model="selectedGym" ng-options="x.name for x in gyms" ng-change="viewGym()">
+                <option value="">Select a gym to view or book!</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col" ng-class="{'selectedGymNull': selectedGym === null}" id="viewCol">
+            <div ng-class="{'selectedGymNullDisplay': selectedGym === null}">
+                <h1>{{gymName}}</h1>
+                <h3>{{gymAddress}}</h3>
 
-    {{gymName}}<br>
-    {{gymAddress}}<br>
-    <a href="#!gym/{{gymId}}">View Gym Page</a><br>
-    <select ng-model="selectedHourView" ng-options="x for x in hoursView" ng-change="viewHours()">
-        <option value="">--Select a Time--</option>
-    </select><br>gymId
-    Total: {{totalHour}}<br>
-    Booked: {{currentHour}}<br>
+                <div class="form-group" id="selectTimeDiv">
+                    <select class="form-control" ng-model="selectedHourView" ng-options="x for x in hoursView"
+                        ng-change="viewHours()">
+                        <option value="">Select a time to view capacity</option>
+                    </select>
+                </div>
 
-    <input type="text" ng-model="bookingName" placeholder="Enter name">
-    <input type="text" ng-model="bookingEmail" placeholder="Enter email">
-    <input type="text" ng-model="bookingPhoneNumber" placeholder="Enter phone number">
-    <button ng-click="bookHour()">Book</button>
+                <div id="capacity" ng-class="{'selectedGymNullDisplay': selectedHourView === null}">
+                    <div id="current">
+                        <h4>Booked</h4>
+                        <h4>{{currentHour}}</h4>
+                    </div>
+                    <div id="total">
+                        <h4>Total</h4>
+                        <h4>{{totalHour}}</h4>
+                    </div>
+                </div>
 
-    Booking ID: {{bookingId}}<br>
+                <div id="viewGymPageDiv" ng-class="{'selectedGymNullDisplay': selectedHourView === null}">
+                    <a class="btn" href="#!gym/{{gymId}}">View Gym Page</a>
+                </div>
+            </div>
+        </div>
+        <div class="col" ng-class="{'selectedGymNull': selectedGym === null || selectedHourView === null}" id="bookingCol">
+            <div id="form" ng-class="{'selectedGymNullDisplay': selectedGym === null || selectedHourView === null}">
+                <div class="form-group">
+                    <input class="form-control" type="text" ng-model="bookingName" placeholder="Enter name">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" ng-model="bookingEmail" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" ng-model="bookingPhoneNumber"
+                        placeholder="Enter phone number">
+                </div>
 
-    <a href="#/!">Home</span></a><br>
-    <a href="#!admin">Admin</a><br>
+                <div>
+                    <button class="btn btn-primary btn-lg btn-block" ng-click="bookHour()">Book</button>
+                </div>
+
+                <div id="bookingId">
+                    Booking ID: {{bookingId}}<br>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

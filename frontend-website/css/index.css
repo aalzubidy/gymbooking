@@ -1,0 +1,101 @@
+body {
+  background-color: white;
+}
+
+#selectGymDiv {
+  margin: 3% 0;
+  width: 40%;
+}
+
+#viewCol {
+  background-color: #0E97FF;
+  color: white;
+  height: 70vh;
+  box-shadow: 1px 2px 10px grey;
+  margin: 1%;
+  padding: 1%;
+}
+
+#bookingCol {
+  background-color: #FFBB54;
+  color: black;
+  height: 70vh;
+  box-shadow: 1px 2px 10px grey;
+  margin: 1%;
+  padding: 1%;
+  text-align: center;
+}
+
+.selectedGymNull {
+    filter: blur(4px);
+}
+
+.selectedGymNullDisplay {
+    display: none !important;
+}
+
+#viewCol select {
+  width: 80%;
+  display: inline-block;
+}
+
+#selectTimeDiv {
+  text-align: center;
+  margin: 10% 0 5% 0;
+}
+
+#capacity {
+  text-align: center;
+}
+
+#capacity div {
+  margin: 2%;
+  height: 100px;
+  width: 180px;
+  text-align: center;
+  padding: 3%;
+  color: black;
+  border-radius: 10px;
+  box-shadow: 0px 1px 10px grey;
+}
+
+#current {
+  background-color: #FFBB54;
+  display: inline-block;
+  text-align: center;
+}
+
+#total {
+  background-color: #FFBB54;
+  display: inline-block;
+}
+
+#viewGymPageDiv {
+    text-align: center;
+}
+
+#viewCol .btn{
+    margin: 18% 0 0 0;
+    color: white;
+    display: inline-block;
+}
+
+#bookingCol input{
+    width: 80%;
+    display: inline-block;
+}
+
+#bookingCol button{
+    width: 80%;
+    display: inline-block;
+    margin: 10% 0 0 0;
+    background-color: #0E97FF !important;
+}
+
+#bookingCol #form{
+    margin: 10% 0 0 0;
+}
+
+#bookingCol #bookingId{
+    margin: 10% 0 0 0;
+}

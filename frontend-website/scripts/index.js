@@ -26,6 +26,8 @@ app.config(function ($routeProvider) {
 })
 
 app.controller('gymsController', function ($scope, $http) {
+  $scope.selectedGym = null;
+  $scope.selectedHourView = null;
 
   $http.get(serverUrl + '/gyms')
     .then(function (response) {
